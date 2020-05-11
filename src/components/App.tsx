@@ -66,6 +66,7 @@ const App: FunctionComponent<AppProps> = ({ widget }) => {
     return (
       <div className="w-full font-robo text-white bg-weather-bg flex items-center justify-around p-4">
         <svg
+          data-testid="main-svg"
           className="fill-current text-weather-yellow w-20"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -84,6 +85,7 @@ const App: FunctionComponent<AppProps> = ({ widget }) => {
       <div className="flex flex-col sm:flex-row justify-between px-20 mb-20">
         <div className="w-32 md:w-48">
           <svg
+            data-testid="main-svg"
             className="fill-current text-weather-yellow"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -116,7 +118,7 @@ const App: FunctionComponent<AppProps> = ({ widget }) => {
           </div>
         </div>
       </div>
-      <div className="flex overflow-x-scroll">
+      <div className="flex overflow-x-scroll" data-testid="carousel">
         {forecastList.length > 0 &&
           forecastList.map((item, index) => (
             <HourlyWeatherItem
