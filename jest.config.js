@@ -33,6 +33,10 @@ module.exports = {
   // An array of file extensions your modules use
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx'],
 
+  moduleNameMapper: {
+    '\\.(css|less|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
+  },
+
   // The root directory that Jest should scan for tests and modules within
   rootDir: rootPath,
 

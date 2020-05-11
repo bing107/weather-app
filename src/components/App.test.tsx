@@ -4,7 +4,9 @@ import App from './App';
 
 describe('app container', () => {
   it('should render the app correctly', () => {
-    const { container } = render(<App />);
-    expect(container).toHaveTextContent('yada yada');
+    const { getByTestId } = render(<App />);
+
+    expect(getByTestId('main-svg')).toBeInTheDocument();
+    expect(getByTestId('carousel')).toBeInTheDocument();
   });
 });

@@ -1,0 +1,4 @@
+.deg::after {
+  content: '\00B0';
+  font-family: sans-serif;
+}
