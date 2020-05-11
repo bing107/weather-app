@@ -1,16 +1,26 @@
 import React, { FunctionComponent } from 'react';
 
 type HWIType = {
+  id: number;
   time: string;
   temperature: number;
+  onItemSelect: (id: number) => void;
 };
 
 const HourlyWeatherItem: FunctionComponent<HWIType> = ({
   time,
   temperature,
+  onItemSelect,
+  id,
 }) => {
+  const handleClick = () => {
+    onItemSelect(id);
+  };
   return (
-    <div className="flex flex-col items-center justify-center w-card px-12 py-8 hover:bg-weather-hover rounded-lg">
+    <div
+      onClick={handleClick}
+      className="flex flex-col items-center justify-center w-card px-12 py-8 hover:bg-weather-hover rounded-lg"
+    >
       <span className="text-weather-grey text-sm font-normal mb-8">{time}</span>
       <svg
         className="fill-current text-weather-yellow w-28 h-28 mb-8"

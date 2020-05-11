@@ -1,47 +1,63 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, FunctionComponent } from 'react';
 import HourlyWeatherItem from './HourlyWeatherItem';
 import dayjs from 'dayjs';
 import { convertFtoC } from '../utils';
 import './app.css';
+import dataDump from '../dump.json';
 
-const App = () => {
+type AppProps = {
+  mode?: string;
+};
+
+const parseForecastItemData = (forecastItem) => {
+  const {
+    main: { temp, temp_min, temp_max },
+    dt,
+    weather,
+  } = forecastItem;
+  return {
+    weather: weather[0].description,
+    maxTemp: convertFtoC(temp_max),
+    minTemp: convertFtoC(temp_min),
+    currentTemp: convertFtoC(temp),
+    date: dayjs.unix(dt).format('dddd D. MMMM'),
+  };
+};
+
+const App: FunctionComponent<AppProps> = () => {
   useEffect(() => {
     const fetchLocationProperties = async () => {
       try {
-        console.log(dayjs.unix(1487246400).format());
         const results = await fetch(
-          'https://cors-anywhere.herokuapp.com/https://samples.openweathermap.org/data/2.5/forecast?q=PindiBoyz,PK&appid=b6907d289e10d714a6e88b30761fae22'
+          'https://cors-anywhere.herokuapp.com/https://samples.openweathermap.org/data/2.5/forecast?q=Berlin,DE&appid=b6907d289e10d714a6e88b30761fae22'
         );
         const { list, city } = await results.json();
-
-        const {
-          main: { temp, temp_min, temp_max },
-          dt,
-          weather,
-        } = list.shift();
-        const parsedCurrentDay = {
-          weather: weather[0].description,
-          maxTemp: Math.round(convertFtoC(temp_max)),
-          minTemp: Math.round(convertFtoC(temp_min)),
-          currentTemp: Math.round(convertFtoC(temp)),
-          date: dayjs.unix(dt).format('dddd D. MMMM'),
-        };
-        setCurrentDay(parsedCurrentDay);
-
+        setCurrentDay(parseForecastItemData(list.shift()));
         setForecastList(list);
 
         const { name } = city;
         setCityName(name);
       } catch (error) {
+        setForecastList(dataDump);
         throw error;
       }
     };
 
     fetchLocationProperties();
   }, []);
-  const [cityName, setCityName] = useState<any>('Altstadt'); // skipped the loading indicator here
-  const [forecastList, setForecastList] = useState<any>([]);
-  const [currentDay, setCurrentDay] = useState<any>({});
+
+  const handleItemClick = (id: number) => {
+    setCurrentDay(
+      parseForecastItemData(forecastList.find((item) => item.dt === id))
+    );
+  };
+
+  const [cityName, setCityName] = useState<any>('Altstadt'); // skipped the loading indicator here + rand name
+  const [forecastList, setForecastList] = useState<any>(dataDump.list);
+  const [currentDay, setCurrentDay] = useState<any>(
+    parseForecastItemData(dataDump.list[21]) // random
+  );
+
   return (
     <div className="font-robo text-white bg-weather-bg min-h-screen py-28">
       <div className="flex justify-between px-20 mb-20">
@@ -82,8 +98,10 @@ const App = () => {
           forecastList.map((item, index) => (
             <HourlyWeatherItem
               key={index}
+              id={item.dt}
               time={dayjs.unix(item.dt).format('H:mm')}
-              temperature={Math.round(convertFtoC(item.main.temp))}
+              temperature={convertFtoC(item.main.temp)}
+              onItemSelect={handleItemClick}
             />
           ))}
       </div>
