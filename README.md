@@ -1,4 +1,4 @@
-# [An opinionated boilerplate]
+# A weather app
 
 ## Content:
 
@@ -15,7 +15,6 @@
 - [x] code coverage
 - [x] bundle analyzer
 - [x] prettier
-- [ ] never create a boilerplate again
 
 ## Instructions:
 
@@ -27,8 +26,8 @@
 
 - Run dev server: `yarn dev`
 
-## Image Compression
+## Handy image compression utility
 
-### Convert images to webp format with cutom size (I haven't really added the util, just want to keep it here because)
+### Convert images to webp format with custom size (2000x1000)
 
 - `cwebp <path-to-large-image> -o <path-to-compressed-image>.webp -resize 2000 1000`
