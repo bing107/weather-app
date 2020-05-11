@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import './app.css';
 import HourlyWeatherItem from './HourlyWeatherItem';
+import './app.css';
 
 const App = () => {
   useEffect(() => {
