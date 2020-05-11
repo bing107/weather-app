@@ -82,7 +82,7 @@ const App: FunctionComponent<AppProps> = ({ widget }) => {
 
   return (
     <div className="font-robo text-white bg-weather-bg min-h-screen py-28">
-      <div className="flex flex-col sm:flex-row justify-between px-20 mb-20">
+      <div className="flex flex-col justify-between items-center sm:flex-row sm:px-20 mb-20">
         <div className="w-32 md:w-48">
           <svg
             data-testid="main-svg"
