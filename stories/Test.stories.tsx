@@ -8,4 +8,11 @@ export default {
   component: HourlyWeatherItem,
 };
 
-export const Test1 = () => <HourlyWeatherItem />;
+export const Test1 = () => (
+  <HourlyWeatherItem
+    id={1487257200}
+    time={'11:00'}
+    temperature={23}
+    onItemSelect={() => {}}
+  />
+);
