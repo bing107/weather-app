@@ -7,10 +7,7 @@ const App = () => {
     const fetchLocationProperties = async () => {
       try {
         const results = await fetch(
-          'https://samples.openweathermap.org/data/2.5/forecast?q=M%C3%BCnchen,DE&appid=b6907d289e10d714a6e88b30761fae22',
-          {
-            mode: 'no-cors',
-          }
+          'https://samples.openweathermap.org/data/2.5/forecast?q=M%C3%BCnchen,DE&appid=b6907d289e10d714a6e88b30761fae22'
         );
         // const { items } = await results.json();
         console.log(results);
