@@ -29,7 +29,7 @@ const App: FunctionComponent<AppProps> = ({ widget }) => {
     const fetchLocationProperties = async () => {
       try {
         const results = await fetch(
-          'https://cors-anywhere.herokuapp.com/https://samples.openweathermap.org/data/2.5/forecast?q=Berlin,DE&appid=b6907d289e10d714a6e88b30761fae22'
+          'https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=rawalpindi,PK&APPID=3f30aa795be4e7c3f232c9abfce03a55'
         );
         const { list, city } = await results.json();
 
