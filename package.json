@@ -26,7 +26,7 @@
     "dayjs": "^1.8.26",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "tailwindcss": "^1.2.0"
+    "tailwindcss": "^2.0.0"
   },
   "devDependencies": {
     "postcss": "8.1.7",
